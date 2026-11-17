@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Letter For You ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #e9ddca;
+  color: #594536;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 650px;
+  margin: auto;
+  padding: 45px 20px;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.subtitle {
+  font-family: 'Caveat', cursive;
+  color: #a77b72;
+  font-size: 25px;
+  margin: 12px 0;
+}
+
+.small {
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+/* ENVELOPE */
+
+.envelope-area {
+  height: 290px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+  width: 290px;
+  height: 180px;
+  background: #cda98b;
+  cursor: pointer;
+  box-shadow: 0 12px 25px #59453630;
+  border-radius: 5px;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #e5c7a7;
+  clip-path: polygon(0 0, 50% 58%, 100% 0);
+  transform-origin: top;
+  transition: transform 1s;
+  z-index: 4;
+}
+
+.envelope.open::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope::after {
+  content: "♡";
+  position: absolute;
+  top: 65px;
+  left: 44%;
+  color: #a65e61;
+  font-size: 35px;
+  z-index: 5;
+  transition: opacity .5s;
+}
+
+.envelope.open::after {
+  opacity: 0;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #d8b695;
+  clip-path: polygon(0 100%, 50% 45%, 100% 100%);
+  z-index: 3;
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  background: #c9a587;
+  clip-path: polygon(0 0, 50% 55%, 100% 0);
+  z-index: 4;
+  transform-origin: top;
+  transition: transform 1s;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-paper {
+  position: absolute;
+  width: 85%;
+  height: 155px;
+  left: 7.5%;
+  top: 10px;
+  background: #fff9ec;
+  padding: 20px;
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  transition: transform 1s;
+}
+
+.envelope.open .envelope-paper {
+  transform: translateY(-125px);
+  z-index: 2;
+}
+
+.open-text {
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  color: #846b57;
+  margin-top: -5px;
+}
+
+/* LETTER */
+
+.letter {
+  display: none;
+  background: #fff9ec;
+  padding: 35px 28px;
+  margin: 35px auto;
+  text-align: left;
+  border: 1px solid #ddc9ae;
+  box-shadow: 0 10px 25px #59453620;
+  animation: appear 1s ease;
+  line-height: 1.9;
+}
+
+.letter.show {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letter h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+
+.letter p {
+  margin-bottom: 17px;
+  font-size: 14px;
+}
+
+.handwriting {
+  font-family: 'Caveat', cursive;
+  font-size: 24px !important;
+  color: #956c65;
+}
+
+.signature {
+  text-align: right;
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  margin-top: 25px;
+}
+
+/* MUSIC */
+
+.music {
+  margin: 35px 0;
+  background: #f7eee1;
+  border: 1px solid #ddc9ae;
+  padding: 25px 15px;
+}
+
+.music h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
+  font-size: 22px;
+}
+
+.music p {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  margin: 8px;
+}
+
+.spotify {
+  display: inline-block;
+  background: #795e4c;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  margin-top: 12px;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.spotify:hover {
+  background: #a77b72;
+  transform: translateY(-3px);
+}
+
+/* PHOTOS */
+
+.gallery {
+  margin: 40px 0;
+}
+
+.gallery h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+
+.photos img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: #d8c5ae;
+  border: 8px solid #fffaf0;
+  box-shadow: 0 5px 12px #59453620;
+  transform: rotate(-2deg);
+}
+
+.photos img:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.caption {
+  font-family: 'Caveat', cursive;
+  font-size: 19px;
+  margin-top: 18px;
+}
+
+footer {
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
+  color: #9c746d;
+  margin-top: 45px;
+}
+
+@media(max-width: 450px) {
+  h1 { font-size: 30px; }
+  .letter { padding: 25px 20px; }
+  .photos img { height: 150px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <p class="small">A LITTLE SOMETHING FOR YOU</p>
+
+  <h1>To My Favorite Kaaway♡</h1>
+
+ <p class="subtitle">
+   take time to read this letter, scroll down and tap the song.
+ </p>
+  <p class="subtitle">
+   take your timee:)
+  </p>
+
+  <!-- ENVELOPE -->
+
+  <div class="envelope-area">
+    <div class="envelope" id="envelope"
+         onclick="openLetter()">
+
+      <div class="envelope-paper">
+        For you, my love ♡
+      </div>
+
+      <div class="envelope-flap"></div>
+      <div class="envelope-front"></div>
+
+    </div>
+  </div>
+
+  <p class="open-text" id="instruction">
+    tap the envelope to open your letter ♡
+  </p>
+
+  <!-- LETTER -->
+
+  <div class="letter" id="letter">
+
+    <h2>A Letter For You</h2>
+
+    <p class="handwriting">
+      —drei.
+    </p>
+
+    <p>
+      hello, my love! I to my pahinga, my home, and my favorite person. just like the song "Ikaw Lang Patutunguhan" by Amiel Sol, i hope you know that no matter where life takes us, ikaw pa rin ang gusto kong balikan at piliin. sa dami ng taong maaari kong makilala at sa dami ng landas na maaari kong tahakin, i'm happy that our paths crossed and that i get to walk through life with you. you became someone i can find comfort in, someone who makes ordinary days feel special, and someone i want to share both my happiest and hardest moments with. and now that we're finally beginning this new chapter together, i have a lot of things i want you to know.
+    </p>
+
+    </p>
+
+    <p>
+     uhmm, I just wanna say thank you for 4 months of courting me. thank you for your patience, for your effort, and for taking the time to show me how you feel. thank you for staying through the days when things were easy and even during the times when weren't understand ourselves. i appreciate the little things you've done. maybe i don't always know how to express how much i appreciate you, but please know that i do. and now that i'm finally saying yes, i want you to know that this isn't just a random answer for me. i'm saying yes because i want to give us a chance to grow into something more beautiful. i'm saying yes because i want to be with you, and i'm happy that we're finally taking this step together. OMGGG, i can finally call you my boyfriend without having to say na nanliligaw ka pa lang sa'kin. i can finally say you're my officially boyfriend and my bestfriend at the same time, and i know na ikaw na rin hanggang sa huli. i want you to be mine, not just for a few months or years, but for as long as life allows us to be together. i know forever is a big word, and i know hindi naman magiging perfect palagi ang relationship natin, but i want you to know that i'm willing to take that journey with you. i want us to grow together, learn from each other, and choose each other even on the days when things aren't easy. and you know what? kapag naiisip ko yung mga memories natin, napapangiti na lang talaga ako kasi ang dami na pala nating pinagdaanan ano. from playing ml together, asaran, playing roblox, hanggang sa mga away and misunderstandings natin, lahat ng 'yon naging part ng story natin HAHAHAHAHA. sino ba naman mag-aakala na yung taong kalaro ko, ka trashtalkan, inaasar ko, at minsan nakakaaway ko rin, would eventually become my boyfriend? LIKE, HELLOOOO DATI INAASAR MO LANG ME SA IBA BUT LOOK AT US NOW, BOYFRIEND NA KITA NGAYON! HAHAHAHAHA.
+    </p>
+
+    <p>
+    but of course, hindi naman puro saya yung magiging journey natin. we've also had our own away and misunderstandings. may mga times siguro na hindi natin agad naiintindihan yung isa't isa, may mga moments na things don't go the way we expect, and may times na kahit gusto lang naman nating maayos yung situation, nauuwi pa rin sa tampuhan. i'm not saying na magiging smooth na lahat ngayon just because official na tayo, because i know that's not how relationships work. there will still be days when we misunderstand each other, days when we get upset, and days when we don't know how to explain what we feel. but i hope that from now on, we'll learn to handle those moments better. i hope we can learn to listen to each other, explain our sides calmly, and understand each other's feelings instead of letting small problems become bigger ones. and I know you won't let that happen. i don't want us to be the kind of couple who gives up just because things get difficult. i want us to be the kind of couple who tries to understand each other, even when it's hard. if we have a problem, i hope we can talk about it instead of letting our pride get in the way. if one of us feels hurt, i hope we can be honest about it. and if we make mistakes, i hope we can learn to apologize sincerely and do better next time. i know we're not perfect, and i don't expect us to know everything about being in a relationship right away. we'll still have a lot to learn, but i'm willing to learn with you. i want us to become better, not only for our relationship but also for ourselves. because for me, being together isn't just about saying sweet words or having happy moments. it's also about understanding each other, respecting each other, and choosing to fix things together when we can.
+    </p>
+
+    <p>
+    thankyouuu for being consistent with me since day one, babyyy! thankyouuu for the way you treat me, for all the efforts you make, and for showing me how genuine your intentions are when it comes to me. i appreciate all the little things you do, and i'm really thankful that you make me feel loved and valued. thank you also for appreciating the love i give you and for making me feel like my efforts are never wasted. i'm so lucky to have you, and i hope you know how much you mean to me. iloveyouuusomuch, my lovee!^^
+    </p>
+
+    <p>
+      This song is for you. Whenever you hear it,
+      I hope you'll remember that someone is
+      always cheering for you and wishing you
+      nothing but the best.
+    </p>
+
+    <p class="handwriting">
+      I hope this little letter makes you smile.
+      I love you, alwayss♡
+    </p>
+
+    <div class="signature">
+      With all my love,<br>
+      —rissiè.
+    </div>
+
+  </div>
+
+  <!-- SONG -->
+
+  <div class="music">
+
+    <h3>Our Little Song ♡</h3>
+
+    <p>Ikaw Lang Patutunguhan</p>
+
+    <p style="font-family:DM Sans;font-size:12px;">
+      A song dedicated to you.
+    </p>
+
+    <a class="spotify"
+       href="https://open.spotify.com/track/7rpQzmMwS1yW1f0oWxBS9z?si=bwcTDY62QoujfD2bRO_EHQ&utm_source=native-share-menu"
+       target="_blank"
+       rel="noopener">
+       ♫ Listen on Spotify
+    </a>
+
+  </div>
+
+  <!-- PHOTO GALLERY -->
+
+  <div class="gallery">
+
+    <h2>Our Little Memories ♡</h2>
+
+    <div class="photos">
+
+     <img src="sam2.jpeg" alt="Our Picture">
+      <img src="photo2.jpeg" alt="Our memory 1">
+      <img src="sam.jpeg" alt="Our memory 2">
+      <img src="photo4.jpeg" alt="Our memory 3">
+
+    </div>
+
+    <p class="caption">
+      Every little moment with you is special.
+    </p>
+
+  </div>
+
+  <footer>
+    made with love, just for you ♡
+  </footer>
+
+</div>
+
+<script>
+
+function openLetter() {
+
+  const envelope = document.getElementById("envelope");
+  const letter = document.getElementById("letter");
+  const instruction = document.getElementById("instruction");
+
+  if (!envelope.classList.contains("open")) {
+
+    envelope.classList.add("open");
+
+    instruction.innerHTML =
+      "a little letter, written just for you ♡";
+
+    setTimeout(() => {
+      letter.classList.add("show");
+
+      setTimeout(() => {
+        letter.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 200);
+
+    }, 900);
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
